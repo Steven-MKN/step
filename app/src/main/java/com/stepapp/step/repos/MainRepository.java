@@ -23,6 +23,8 @@ import com.stepapp.step.firebase.Pref;
 import com.stepapp.step.utils.Constants;
 import com.stepapp.step.utils.Utils;
 
+import java.util.ArrayList;
+
 public class MainRepository {
     private static MainRepository instance;
     public String TAG = getClass().getName();
@@ -200,6 +202,55 @@ public class MainRepository {
                         Intent intent = new Intent(Constants.INTENT_GET_SETTINGS_ACTION);
                         intent.putExtra(Constants.IS_SUCCESSFUL, false);
                         context.sendBroadcast(intent);
+                    }
+                });
+    }
+
+    public void savePlace(String id, final Context context){
+        Log.v(TAG, "savePlace...");
+        database.child(currentUser.getUid()).child("places")
+                .push()
+                .setValue(id)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        Intent intent = new Intent(Constants.INTENT_SAVE_PLACE_ACTION);
+                        if (task.isSuccessful())
+                            intent.putExtra(Constants.IS_SUCCESSFUL, true);
+                        else intent.putExtra(Constants.IS_SUCCESSFUL, false);
+
+                        context.sendBroadcast(intent);
+                    }
+                });
+    }
+
+    public void getPlaces(final Context context){
+        Log.v(TAG, "getPlaces");
+        database.child(currentUser.getUid()).child("places")
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        Intent intent = new Intent(Constants.INTENT_GET_PLACES_ACTION);
+                        if (dataSnapshot.hasChildren()){
+                            intent.putExtra(Constants.IS_SUCCESSFUL, true);
+
+                            ArrayList<String> places = new ArrayList<>();
+
+                            for (DataSnapshot snapshot : dataSnapshot.getChildren()){
+                                places.add((String)snapshot.getValue().toString());
+                            }
+
+                            intent.putStringArrayListExtra("places", places);
+
+                        } else {
+                            intent.putExtra(Constants.IS_SUCCESSFUL, false);
+                        }
+                        context.sendBroadcast(intent);
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
                     }
                 });
     }

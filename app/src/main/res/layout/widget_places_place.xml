@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
+    
+    <data>
+        
+        <variable
+            name="data"
+            type="com.stepapp.step.viewmodels.WidgetPlacesViewModel" />
+        
+    </data>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
@@ -13,13 +21,13 @@
             android:textSize="22dp"
             android:textStyle="bold"
             android:id="@+id/text_view_place_title"
-            android:text="Place Title" />
+            android:text="@={data.title}" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/text_view_place_address"
-            android:text="1, Matopo road, Mowbray, Cape Town" />
+            android:text="@={data.address}" />
 
         <ImageView
             android:layout_width="match_parent"

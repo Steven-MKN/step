@@ -119,8 +119,8 @@ public class MapFragment extends Fragment implements IMapFragment, OnMapReadyCal
         bundle.putString("title", title);
         bundle.putString("address", address);
         bundle.putString("id", id);
-        bundle.putDouble("lat", latLng.latitude);
-        bundle.putDouble("lng", latLng.longitude);
+//        bundle.putDouble("lat", latLng.latitude);
+//        bundle.putDouble("lng", latLng.longitude);
 
         NavHostFragment.findNavController(this).navigate(R.id.action_mapFragment_to_placeViewDialog, bundle);
     }
