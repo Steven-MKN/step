@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:aapt="http://schemas.android.com/aapt" android:id="@+id/start_navigation" app:startDestination="@+id/loginFragment">
+    <fragment android:label="LoginFragment" android:name="com.stepapp.step.LoginFragment" android:id="@+id/loginFragment">
+        <action android:id="@+id/action_loginFragment_to_registerFragment" app:destination="@+id/registerFragment"/>
+    </fragment>
+    <fragment android:label="RegisterFragment" android:name="com.stepapp.step.RegisterFragment" android:id="@+id/registerFragment"/>
+</navigation>

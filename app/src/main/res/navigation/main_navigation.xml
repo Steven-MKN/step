@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:aapt="http://schemas.android.com/aapt" android:id="@+id/main_navigation"
+    app:startDestination="@id/mapFragment">
+
+    <fragment
+        android:id="@+id/mapFragment"
+        android:name="com.stepapp.step.MapFragment"
+        android:label="Step" >
+        <action
+            android:id="@+id/action_mapFragment_to_placeViewDialog"
+            app:destination="@id/placeViewDialog" />
+    </fragment>
+    <fragment
+        android:id="@+id/savedFragment"
+        android:name="com.stepapp.step.SavedFragment"
+        android:label="Saved Places" />
+    <fragment
+        android:id="@+id/preferencesFragment"
+        android:name="com.stepapp.step.PreferencesFragment"
+        android:label="Preferences" />
+    <fragment
+        android:id="@+id/placeViewDialog"
+        android:name="com.stepapp.step.dialogs.PlaceViewDialog"
+        android:label="Place" />
+</navigation>
